@@ -7,3 +7,6 @@ class Point2f:
 
     def getDistance(self, o):
         return math.sqrt((o.x - self.x)**2 + (o.y - self.y)**2)
+
+    def __str__(self):
+        return "({}, {})".format(self.x, self.y)

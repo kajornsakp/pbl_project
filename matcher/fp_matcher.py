@@ -1,4 +1,4 @@
-from .minutiae.minutiae import Minutiae
+from minutiae.minutiae import Minutiae
 
 class FpMatcher(object):
     def __init__(self, fpSegmentator, fpEnhancer, mnExtractor, mnMatcher):
