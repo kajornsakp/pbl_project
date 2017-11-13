@@ -7,5 +7,5 @@ class MType(Enum):
 
 class Minutiae:
     def __init__(self, posVal, typeVal = MType.UNKNOWN):
-        self.pos = posVal
-        self.type = typeVal
+        self.pos = posVal       # Point2f
+        self.type = typeVal     # MType
