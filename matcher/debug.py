@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from minutiae.minutiae import Minutiae, MType
 from minutiae.point2f import Point2f
+from matcher. mn_matcher import MnMatcher
 import random as rand
 
 
@@ -55,6 +56,8 @@ if __name__ == '__main__':
     img2 = np.zeros((w, h), np.uint8)
     for mn in mnSet2:
         img2[mn.pos.x, mn.pos.y] = 255
+
+    MnMatcher.match(mnSet1, mnSet2)
 
     cv2.imshow('original', img1)
     cv2.imshow('rotated', img2)
