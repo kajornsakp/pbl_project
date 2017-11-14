@@ -44,22 +44,22 @@ if __name__ == '__main__':
 
         print(x, y)
 
-        posVal = Point2f(int(x), int(y))
+        posVal = Point2f(x, y)
         mType = mTypes[rand.randint(0, 1)]
 
         mnSet2.append(Minutiae(posVal, mType))
 
-    img1 = np.zeros((w, h), np.uint8)
-    for mn in mnSet1:
-        img1[mn.pos.x, mn.pos.y] = 255
-
-    img2 = np.zeros((w, h), np.uint8)
-    for mn in mnSet2:
-        img2[mn.pos.x, mn.pos.y] = 255
-
+    # img1 = np.zeros((w, h), np.uint8)
+    # for mn in mnSet1:
+    #     img1[mn.pos.x, mn.pos.y] = 255
+    #
+    # img2 = np.zeros((w, h), np.uint8)
+    # for mn in mnSet2:
+    #     img2[mn.pos.x, mn.pos.y] = 255
+    #
     MnMatcher.match(mnSet1, mnSet2)
-
-    cv2.imshow('original', img1)
-    cv2.imshow('rotated', img2)
+    #
+    # cv2.imshow('original', img1)
+    # cv2.imshow('rotated', img2)
     cv2.waitKey()
     cv2.destroyAllWindows()
