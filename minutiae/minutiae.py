@@ -14,3 +14,15 @@ class Minutiae:
 
     def __str__(self):
         return "{}".format(self.pos)
+
+    def getPos(self):
+        return self.pos
+
+    def getType(self):
+        return self.type
+
+    def getXY(self):
+        return (self.pos.x, self.pos.y)
+
+    def getYX(self):
+        return (self.pos.y, self.pos.x)
