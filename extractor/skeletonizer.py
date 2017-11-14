@@ -23,38 +23,22 @@ class Skeletonizer(object):
             countPixels = 0
             for x in range(1, rows-1):   #for each pixels (except the borders)
                 for y in range(1, cols-1):
-                    P2, P3, P4, P5, P6, P7, P8, P9 = neighbours = Skeletonizer.getNeighbours(x, y, imgTemp)  # get neighbours
-                    countBlack = 0
-                    for pixel in neighbours:
-                        if(pixel == 0):
-                            countBlack += 1
-                    if((imgTemp[x,y] == 0) and #for each black pixels
-                           (2 <= countBlack <= 6) and #The number of black pixel neighbors is [2, 6]
-                           (Skeletonizer.transitions(neighbours) == 1) and #The number of transitions from white to black = 1
-                           (P2 == 255 or P4 == 255 or P6 == 255) and #p2, p4, or p6 is white
-                           (P4 == 255 or P6 == 255 or P8 == 255)): #p4, p6, or p8 is white
-                        #print("In:",x,",",y)
-                        imgTemp[x,y] = 255
-                        countPixels += 1
+                    if(imgTemp[x,y] == 0): #for each black pixels
+                        P2, P3, P4, P5, P6, P7, P8, P9 = neighbours = Skeletonizer.getNeighbours(x, y, imgTemp)  # get neighbours
+                        countBlack = 0
+                        for pixel in neighbours:
+                            if(pixel == 0):
+                                countBlack += 1
+                        if((2 <= countBlack <= 6) and #The number of black pixel neighbors is [2, 6]
+                               (Skeletonizer.transitions(neighbours) == 1) and #The number of transitions from white to black = 1
+                               (((P2 == 255 or P4 == 255 or P6 == 255) and #p2, p4, or p6 is white
+                               (P4 == 255 or P6 == 255 or P8 == 255)) or
+                                    ((P2 == 255 or P4 == 255 or P8 == 255) and  # p2, p4, or p6 is white
+                                (P2 == 255 or P6 == 255 or P8 == 255)))): #p4, p6, or p8 is white
+                            imgTemp[x,y] = 255
+                            countPixels += 1
 
-            countPixels2 = 0
-            for x in range(1, rows - 1):  # for each pixels (except the borders)
-                for y in range(1, cols - 1):
-                    P2, P3, P4, P5, P6, P7, P8, P9 = neighbours = Skeletonizer.getNeighbours(x, y, imgTemp)  # get neighbours
-                    countBlack = 0
-                    for pixel in neighbours:
-                        if (pixel == 0):
-                            countBlack += 1
-                    if ((imgTemp[x, y] == 0) and  # for each black pixels
-                            (2 <= countBlack <= 6) and  # The number of black pixel neighbors is [2, 6]
-                            (Skeletonizer.transitions(neighbours) == 1) and  # The number of transitions from white to black = 1
-                            (P2 == 255 or P4 == 255 or P8 == 255) and  # p2, p4, or p6 is white
-                            (P2 == 255 or P6 == 255 or P8 == 255)):  # p4, p6, or p8 is white
-                        #print("In2:", x, ",", y)
-                        imgTemp[x, y] = 255
-                        countPixels2 += 1
-
-            if (countPixels2 == 0 and countPixels == 0):
+            if (countPixels == 0):
                 break
 
         skeletonedImg = imgTemp

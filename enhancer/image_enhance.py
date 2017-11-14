@@ -19,8 +19,7 @@ def image_enhance(img):
     gradientsigma = 1;
     blocksigma = 7;
     orientsmoothsigma = 7;
-    orientim = ridge_orient(normim, gradientsigma, blocksigma, orientsmoothsigma);              # find orientation of every pixel
-    cv2.imshow('ori', orientim)
+    orientim = ridge_orient(normim, gradientsigma, blocksigma, orientsmoothsigma);              # find orientation of every pixe
 
     blksze = 38;
     windsze = 5;
@@ -28,7 +27,6 @@ def image_enhance(img):
     maxWaveLength = 15;
     freq, medfreq = ridge_freq(normim, mask, orientim, blksze, windsze, minWaveLength,maxWaveLength);    #find the overall frequency of ridges
 
-    cv2.imshow('sad', freq)
     freq = medfreq*mask;
     kx = 0.65;ky = 0.65;
     newim = ridge_filter(normim, orientim, freq, kx, ky);       # create gabor filter and do the actual filtering

@@ -61,8 +61,8 @@ def ridge_segment(im,blksze,thresh):
     rows,cols = im.shape;    
     
     im = normalise(im,0,1);    # normalise to get zero mean and unit standard deviation
-    
-    
+
+
     new_rows =  np.int(blksze * np.ceil((np.float(rows))/(np.float(blksze))))
     new_cols =  np.int(blksze * np.ceil((np.float(cols))/(np.float(blksze))))
     
