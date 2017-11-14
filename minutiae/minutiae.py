@@ -13,4 +13,4 @@ class Minutiae:
         self.type = typeVal     # MType
 
     def __str__(self):
-        return "{}:{}".format(self.pos, self.type)
+        return "{}".format(self.pos)

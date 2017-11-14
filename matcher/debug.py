@@ -39,10 +39,14 @@ if __name__ == '__main__':
     mnSet2 = []
     centerPoint = (w/2, h/2)
     for i in range(n):
-        point = (mnSet1[i].pos.x, mnSet1[i].pos.y)
-        x, y = rotatePoint(centerPoint, point, 30)
+        # point = (mnSet1[i].pos.x, mnSet1[i].pos.y)
+        # x, y = rotatePoint(centerPoint, point, 30)
+        #
+        # posVal = Point2f(x, y)
+        # mType = mTypes[rand.randint(0, 1)]
 
-        print(x, y)
+        x = rand.randint(100, w - 100)
+        y = rand.randint(100, h - 100)
 
         posVal = Point2f(x, y)
         mType = mTypes[rand.randint(0, 1)]
@@ -57,7 +61,8 @@ if __name__ == '__main__':
     # for mn in mnSet2:
     #     img2[mn.pos.x, mn.pos.y] = 255
     #
-    MnMatcher.match(mnSet1, mnSet2)
+    mnMatcher = MnMatcher()
+    mnMatcher.match(mnSet1, mnSet2)
     #
     # cv2.imshow('original', img1)
     # cv2.imshow('rotated', img2)
