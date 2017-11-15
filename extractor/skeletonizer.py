@@ -17,6 +17,7 @@ class Skeletonizer(object):
 
     @staticmethod
     def skeletonize(binarizedImg):
+
         imgTemp = binarizedImg.copy()
         rows, cols = imgTemp.shape
         while True:
