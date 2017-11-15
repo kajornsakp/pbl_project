@@ -56,7 +56,8 @@ def ridge_filter(im, orient, freq, kx, ky):
     im = np.double(im);
     rows,cols = im.shape;
     newim = np.zeros((rows,cols));
-    
+    print((rows, cols))
+    print(freq.shape)
     freq_1d = np.reshape(freq,(1,rows*cols));
     ind = np.where(freq_1d>0);
     
