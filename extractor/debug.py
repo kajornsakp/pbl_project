@@ -11,32 +11,38 @@ from PIL import Image
 if __name__ == '__main__':
     #img = cv2.imread("../asset/102_1.tif", cv2.IMREAD_GRAYSCALE)
 
-    # img = Image.open("../asset/101_1.tif")  # load image from file
-    # originalImg = np.array(img)
-    #
-    # #Image Segmentation
-    # segmentedImg = np.asarray(segment_image(img, 30, 100))  # for dataset with gray background
-    #
-    # #Apply Gabor Filter
-    # enhancedImg = image_enhance(segmentedImg)
-    #
-    # #Binarize Image
-    # binarizedImg = Binarizer.binarize(enhancedImg)
-    #
-    # #Skeletonize Image
-    # skeletonedImg = Skeletonizer.skeletonize(binarizedImg)
-    #
-    # cv2.imshow("original", originalImg)
-    # cv2.imshow("segmentedImg", segmentedImg)
-    # cv2.imshow("enhanced Gabor", enhancedImg)
-    # cv2.imshow("binarziedImg", binarizedImg)
+    img = Image.open("../asset/101_1.tif")  # load image from file
+    originalImg = np.array(img)
 
-    #skeletonedImg = cv2.imread("/Users/TUEY/Documents/KMITL SE 2016/Year 4 Term 1/CV/Assignment/pbl_project/asset/skeletonizedfingerprint.png", cv2.IMREAD_GRAYSCALE)
-    skeletonedImg = cv2.imread("../asset/skeletonizedfingerprint.png", cv2.IMREAD_GRAYSCALE)
+    #Image Segmentation
+    segmentedImg = np.asarray(segment_image(img, 30, 100))  # for dataset with gray background
 
+    #Apply Gabor Filter
+    enhancedImg = image_enhance(segmentedImg)
+
+    #Binarize Image
+    binarizedImg = Binarizer.binarize(enhancedImg)
+
+    #Skeletonize Image
+    skeletonedImg = Skeletonizer.skeletonize(binarizedImg)
+
+    #Extract Minutiae
     mnSet = MnExtractor.extract(skeletonedImg)
 
+    cv2.imshow("original", originalImg)
+    cv2.imshow("segmentedImg", segmentedImg)
+    cv2.imshow("enhanced Gabor", enhancedImg)
+    cv2.imshow("binarziedImg", binarizedImg)
     cv2.imshow("skeletonizedImg", skeletonedImg)
+
+    #skeletonedImg = cv2.imread("/Users/TUEY/Documents/KMITL SE 2016/Year 4 Term 1/CV/Assignment/pbl_project/asset/skeletonizedfingerprint.png", cv2.IMREAD_GRAYSCALE)
+    # img = cv2.imread("../asset/skeletonizedfingerprint.png", cv2.IMREAD_GRAYSCALE)
+    #
+    # binarizedImg = Binarizer.binarize(img)
+    # skeletonedImg = Skeletonizer.skeletonize(binarizedImg)
+    # mnSet = MnExtractor.extract(skeletonedImg)
+    #
+    # cv2.imshow("skeletonizedImg", skeletonedImg)
     cv2.waitKey()
     cv2.destroyAllWindows()
 
