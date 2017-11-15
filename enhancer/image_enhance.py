@@ -15,6 +15,7 @@ def image_enhance(img):
     thresh = 0.1;
     normim,mask = ridge_segment(img,blksze,thresh);             # normalise the image and find a ROI
 
+    cv2.imshow('normin', normim)
 
     gradientsigma = 1;
     blocksigma = 7;
