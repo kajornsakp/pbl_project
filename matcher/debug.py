@@ -22,6 +22,7 @@ def rotatePoint(centerPoint, point, angle):
 
 
 if __name__ == '__main__':
+    startTime = datetime.now()
 
     # start random points
     w, h = 600, 600
@@ -47,15 +48,13 @@ if __name__ == '__main__':
         # posVal = Point2f(int(x), int(y))
         # mType = mTypes[rand.randint(0, 1)]
 
-        # x = rand.randint(100, w - 100)
-        # y = rand.randint(100, h - 100)
-        #
-        # posVal = Point2f(x, y)
+        x = rand.randint(100, w - 100)
+        y = rand.randint(100, h - 100)
+
+        posVal = Point2f(x, y)
         mType = mTypes[rand.randint(0, 1)]
 
         mnSet2.append(Minutiae(posVal, mType))
-
-    rand.shuffle(mnSet2)
 
     # img1 = np.zeros((w, h), np.uint8)
     # for mn in mnSet1:
@@ -64,8 +63,6 @@ if __name__ == '__main__':
     # img2 = np.zeros((w, h), np.uint8)
     # for mn in mnSet2:
     #     img2[mn.pos.x, mn.pos.y] = 255
-
-    startTime = datetime.now()
 
     mnMatcher = MnMatcher()
     mnMatcher.match(mnSet1, mnSet2)

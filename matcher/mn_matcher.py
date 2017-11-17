@@ -86,11 +86,11 @@ class MnMatcher(object):
         distSet1, distSet2 = self.__calEuclidDist(mnSet1, mnSet2)
 
         # 2. record the matched points
-        matchedSet = self.__recordMatchPoints(distSet1, distSet2)
+        # matchedSet = self.__recordMatchPoints(distSet1, distSet2)
 
         # 3. select a pair of matched points
-        for m in matchedSet:
-            print("{} \t== {}".format(m[0], m[1]))
+        # for m in matchedSet:
+            # print("{} == {}".format(m[0], m[1]))
 
         # for i in range(len(d)):
         #     print("{} \t:\t {}".format(d[i], s[i]))

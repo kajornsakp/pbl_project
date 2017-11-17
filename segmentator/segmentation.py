@@ -28,6 +28,7 @@ def segment_image(im,W,T):
                 imgWhite = Image.fromarray(whiteBlock)
                 img.paste(imgWhite,(i,j))
     mask = numpy.asarray(img)[0:x][0,:y] < T
+
     return img,mask
 
 
