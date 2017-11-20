@@ -9,17 +9,22 @@ from .ridge_orient import ridge_orient
 from .ridge_freq import ridge_freq
 from .ridge_filter import ridge_filter
 import cv2
+import numpy as np
 
-def image_enhance(img):
+
+def image_enhance(img, mask):
     blksze = 16;
     thresh = 0.1;
-    normim,mask = ridge_segment(img,blksze,thresh);             # normalise the image and find a ROI
+    normim,mask1 = ridge_segment(img,blksze,thresh);             # normalise the image and find a ROI
 
+    #cv2.imshow('normin', normim)
+
+    normim = img.astype(np.float64)
 
     gradientsigma = 1;
     blocksigma = 7;
     orientsmoothsigma = 7;
-    orientim = ridge_orient(normim, gradientsigma, blocksigma, orientsmoothsigma);              # find orientation of every pixe
+    orientim = ridge_orient(normim, gradientsigma, blocksigma, orientsmoothsigma);              # find orientation of every pixel
 
     blksze = 38;
     windsze = 5;

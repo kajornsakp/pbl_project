@@ -15,10 +15,11 @@ if __name__ == '__main__':
     originalImg = np.array(img)
 
     #Image Segmentation
-    segmentedImg = np.asarray(segment_image(img, 30, 100))  # for dataset with gray background
+    segmentImg, mask = segment_image(img, 30, 100)
+    segmentedImg = np.asarray(segmentImg)  # for dataset with gray background
 
     #Apply Gabor Filter
-    enhancedImg = image_enhance(segmentedImg)
+    enhancedImg = image_enhance(segmentedImg, mask)
 
     #Binarize Image
     binarizedImg = Binarizer.binarize(enhancedImg)
