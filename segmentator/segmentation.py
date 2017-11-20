@@ -2,10 +2,8 @@ from PIL import Image, ImageStat
 from math import sqrt
 import numpy
 
-
 def calAverage(block):
     return numpy.average(numpy.asarray(block))
-
 
 def segment_image(im,W,T):
     """returns segmented image as pillow image object
@@ -20,18 +18,21 @@ def segment_image(im,W,T):
             :rtype: Image
 
             """
+    im = Image.fromarray(im)
     x,y = im.size
     img = im.copy()
     for i in range(0,x,W):
         for j in range(0,y,W):
             block = img.crop((i,j,min(i+W,x),min(j+W,y)))
-            if (calAverage(block) < T):
+            if (calAverage(block) > T):
                 whiteBlock = numpy.full((W,W),1,numpy.uint8)*255
                 imgWhite = Image.fromarray(whiteBlock)
                 img.paste(imgWhite,(i,j))
-    mask = numpy.asarray(img)[0:x][0,:y] < T
+    mask = numpy.asarray(img)[0:x][0:y] < T
+    print(mask)
+    img = numpy.asarray(img)
+    return img,mask
 
-    return img, mask
 
 
 def groupSegmented(img):
@@ -46,7 +47,7 @@ import numpy as np
 
 def normalise(img, mean, std):
     normed = (img - np.mean(img)) / (np.std(img));
-    return normed
+    return (normed)
 
 
 def ridge_segment(im, blksze, thresh):
@@ -78,4 +79,4 @@ def ridge_segment(im, blksze, thresh):
 
     normim = (im - mean_val) / (std_val);
 
-    return normim, mask
+    return (normim, mask)
