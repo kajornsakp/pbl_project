@@ -76,10 +76,16 @@ def ridge_orient(im, gradientsigma, blocksigma, orientsmoothsigma):
     
     Gx = signal.convolve2d(im,fx,mode='same')    
     Gy = signal.convolve2d(im,fy,mode='same')
+
+
     
     Gxx = np.power(Gx,2)
     Gyy = np.power(Gy,2)
-    Gxy = Gx*Gy
+    Gxy = cv2.addWeighted(Gx, 0.5, Gy, 0.5, 0)
+
+    cv2.imshow('gx', Gx)
+    cv2.imshow('gy', Gy)
+    cv2.imshow('gxy', Gxy)
     
     #Now smooth the covariance data to perform a weighted summation of the data.    
     

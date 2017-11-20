@@ -29,3 +29,17 @@ minutiae/__pycache__/minutiae.cpython-34.pyc
 minutiae/__pycache__/point2f.cpython-34.pyc
 segmentator/__pycache__/__init__.cpython-34.pyc
 segmentator/__pycache__/segmentation.cpython-34.pyc
+enhancer/__pycache__/__init__.cpython-36.pyc
+enhancer/__pycache__/frequest.cpython-36.pyc
+enhancer/__pycache__/image_enhance.cpython-36.pyc
+enhancer/__pycache__/ridge_filter.cpython-36.pyc
+enhancer/__pycache__/ridge_freq.cpython-36.pyc
+enhancer/__pycache__/ridge_orient.cpython-36.pyc
+enhancer/__pycache__/ridge_segment.cpython-36.pyc
+enhancer/__pycache__/utils.cpython-36.pyc
+extractor/__pycache__/__init__.cpython-36.pyc
+extractor/__pycache__/binarizer.cpython-36.pyc
+extractor/__pycache__/mn_extractor.cpython-36.pyc
+extractor/__pycache__/skeletonizer.cpython-36.pyc
+segmentator/__pycache__/__init__.cpython-36.pyc
+segmentator/__pycache__/segmentation.cpython-36.pyc
