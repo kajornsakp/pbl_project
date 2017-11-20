@@ -6,7 +6,7 @@ class Binarizer(object):
     @staticmethod
     def binarize(image):
         #convert float64 to uint8
-        uint8Img = image.astype(np.uint8)
+        uint8Img = np.float32(image)
         #blur image
         #blurImg = cv2.GaussianBlur(uint8Img, (5, 5), 0)
         #binarize image

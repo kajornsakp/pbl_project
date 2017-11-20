@@ -30,6 +30,7 @@ if __name__ == '__main__':
     cv2.imshow("original", img)
     cv2.imshow("segmentedImg", segmentedImg)
     cv2.imshow("enhanced Gabor", enhancedImg)
+    print(enhancedImg.dtype)
     cv2.imshow("binarziedImg", binarizedImg)
     cv2.imshow("skeletonizedImg", skeletonedImg)
 
