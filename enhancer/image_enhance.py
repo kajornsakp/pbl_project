@@ -15,11 +15,11 @@ import numpy as np
 def image_enhance(img, mask):
     blksze = 16;
     thresh = 0.1;
-    normim,mask1 = ridge_segment(img,blksze,thresh);             # normalise the image and find a ROI
+    # normim,mask1 = ridge_segment(img,blksze,thresh);             # normalise the image and find a ROI
 
     #cv2.imshow('normin', normim)
 
-    normim = img.astype(np.float64)
+    normim = img
 
     gradientsigma = 1;
     blocksigma = 7;

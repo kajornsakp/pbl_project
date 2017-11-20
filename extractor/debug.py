@@ -9,14 +9,11 @@ from extractor.mn_extractor import MnExtractor
 from PIL import Image
 
 if __name__ == '__main__':
-    #img = cv2.imread("../asset/102_1.tif", cv2.IMREAD_GRAYSCALE)
-
-    img = Image.open("../asset/101_1.tif")  # load image from file
-    originalImg = np.array(img)
+    img = cv2.imread("../asset/101_1.tif", cv2.IMREAD_GRAYSCALE) # load image from file
 
     #Image Segmentation
-    segmentImg, mask = segment_image(img, 30, 100)
-    segmentedImg = np.asarray(segmentImg)  # for dataset with gray background
+    segmentedImg, mask = segment_image(img, 60, 100)  # threshold lv 1
+    # segmentedImg2, mask = segment_image(segmentedImg, 15, 60)  # threshold lv 2
 
     #Apply Gabor Filter
     enhancedImg = image_enhance(segmentedImg, mask)
@@ -30,7 +27,7 @@ if __name__ == '__main__':
     #Extract Minutiae
     mnSet = MnExtractor.extract(skeletonedImg)
 
-    cv2.imshow("original", originalImg)
+    cv2.imshow("original", img)
     cv2.imshow("segmentedImg", segmentedImg)
     cv2.imshow("enhanced Gabor", enhancedImg)
     cv2.imshow("binarziedImg", binarizedImg)

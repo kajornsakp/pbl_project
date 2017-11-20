@@ -24,12 +24,13 @@ def segment_image(im,W,T):
     for i in range(0,x,W):
         for j in range(0,y,W):
             block = img.crop((i,j,min(i+W,x),min(j+W,y)))
-            if (calAverage(block) < T):
+            if (calAverage(block) > T):
                 whiteBlock = numpy.full((W,W),1,numpy.uint8)*255
                 imgWhite = Image.fromarray(whiteBlock)
                 img.paste(imgWhite,(i,j))
     mask = numpy.asarray(img)[0:x][0:y] < T
     print(mask)
+    img = numpy.asarray(img)
     return img,mask
 
 
