@@ -17,7 +17,7 @@ if __name__ == '__main__':
     startTime = datetime.now()
 
     seg_img1, mask = segment_image(img, 60, 100)
-    seg_img, mask = segment_image(seg_img1, 20, 60)
+    seg_img, mask = segment_image(seg_img1, 40, 60)
     enc_img = image_enhance(seg_img, mask)
     cv2.imshow("enc1", enc_img)
     cv2.imwrite('temp.png', enc_img)
