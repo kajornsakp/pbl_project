@@ -10,4 +10,4 @@ class Point2f:
         return float("{0:.6f}".format(d))
 
     def __str__(self):
-        return "({}, {})".format(self.x, self.y)
+        return "({:3d}, {:3d})".format(self.x, self.y)
