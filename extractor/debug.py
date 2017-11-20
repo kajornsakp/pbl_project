@@ -36,8 +36,8 @@ if __name__ == '__main__':
     cv2.imshow("binarziedImg", binarizedImg)
     cv2.imshow("skeletonizedImg", skeletonedImg)
 
-    #skeletonedImg = cv2.imread("/Users/TUEY/Documents/KMITL SE 2016/Year 4 Term 1/CV/Assignment/pbl_project/asset/skeletonizedfingerprint.png", cv2.IMREAD_GRAYSCALE)
-    # img = cv2.imread("../asset/skeletonizedfingerprint.png", cv2.IMREAD_GRAYSCALE)
+    #skeletonedImg = cv2.imread("/Users/TUEY/Documents/KMITL SE 2016/Year 4 Term 1/CV/Assignment/pbl_project/asset/skel-fp.png", cv2.IMREAD_GRAYSCALE)
+    # img = cv2.imread("../asset/skel-fp.png", cv2.IMREAD_GRAYSCALE)
     #
     # binarizedImg = Binarizer.binarize(img)
     # skeletonedImg = Skeletonizer.skeletonize(binarizedImg)

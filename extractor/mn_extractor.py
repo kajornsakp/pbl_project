@@ -26,14 +26,14 @@ class MnExtractor(object):
     @staticmethod
     def extract(skeletonedImg):
         mnSet = []
-        mnEndPoint = []
-        mnBifurc = []
+        # mnEndPoint = []
+        # mnBifurc = []
         imgTemp = skeletonedImg.copy()
         rows, cols = imgTemp.shape
-
-        for x in range(1, rows - 1):  # for each pixels (except the borders)
-            for y in range(1, cols - 1):
-                if (imgTemp[x, y] == 0):
+        margin = 50
+        for x in range(margin, rows - margin):  # for each pixels (except the borders)
+            for y in range(margin, cols - margin):
+                if skeletonedImg[x, y] == 0:
                     P1, P2, P3, P4, P5, P6, P7, P8 = neighbours = MnExtractor.getNeighbours(x, y, skeletonedImg)  # get neighbours
                     P9 = P1
 
@@ -65,16 +65,16 @@ class MnExtractor(object):
 
         #mnSet = finalBifurc + finalEndPoint
 
-        imgToColor = cv2.cvtColor(imgTemp, cv2.COLOR_GRAY2BGR)
-        extractedImg = imgToColor
-        for minutiae in mnSet:
-            if(minutiae.getType() == MType.ENDPOINT):
-                extractedImg = cv2.circle(extractedImg, minutiae.getXY(), 3, (0, 0, 255), 2)
-            elif(minutiae.getType() == MType.BIFURCATION):
-                extractedImg = cv2.circle(extractedImg, minutiae.getXY(), 3, (255, 0, 0), 2)
+        # imgToColor = cv2.cvtColor(imgTemp, cv2.COLOR_GRAY2BGR)
+        # extractedImg = imgToColor
+        # for minutiae in mnSet:
+        #     if(minutiae.getType() == MType.ENDPOINT):
+        #         extractedImg = cv2.circle(extractedImg, minutiae.getXY(), 3, (0, 0, 255), 2)
+        #     elif(minutiae.getType() == MType.BIFURCATION):
+        #         extractedImg = cv2.circle(extractedImg, minutiae.getXY(), 3, (255, 0, 0), 2)
 
         #extractedImg = cv2.circle(extractedImg, (192, 495), 3, (0, 0, 255), 2)
 
-        cv2.imshow("extracted", extractedImg)
+        # cv2.imshow("extracted", extractedImg)
 
         return mnSet
