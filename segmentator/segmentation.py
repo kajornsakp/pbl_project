@@ -18,6 +18,7 @@ def segment_image(im,W,T):
             :rtype: Image
 
             """
+    im = Image.fromarray(im)
     x,y = im.size
     img = im.copy()
     for i in range(0,x,W):
@@ -27,9 +28,11 @@ def segment_image(im,W,T):
                 whiteBlock = numpy.full((W,W),1,numpy.uint8)*255
                 imgWhite = Image.fromarray(whiteBlock)
                 img.paste(imgWhite,(i,j))
-    mask = numpy.asarray(img)[0:x][0,:y] < T
-
+    mask = numpy.asarray(img)[0:x][0:y] < T
+    print(mask)
     return img,mask
+
+
 
 def groupSegmented(img):
     segmentedImg = segment_image(img, 30, 100)  # threshold lv 1
