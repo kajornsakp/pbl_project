@@ -1,6 +1,5 @@
-import cv2
+
 import numpy as np
-import scipy.ndimage as ndimage
 import segment
 import enhancer
 import extractor
@@ -17,23 +16,23 @@ class FpMatcher(object):
         # sourceImage = './asset/102_3.tif'
 
         # Reading image
-        image = ndimage.imread(img_src, mode="L").astype("float64")
+
+        # image = ndimage.imread(img_src, mode="L").astype("float64")
 
         # segement
-        image, mask = segment.findMask(image)
+        image, mask = segment.findMask(img_src)
 
         #enhancer
         image = enhancer.enhancer(image, mask)
 
         #extrator
-        image = extractor.extractor(image, mask)
+        mnSet = extractor.extractor(image, mask)
 
-        return image
+        return mnSet
 
     def match(self, img_src_1, img_src_2):
-
-        # mnSet1, img1 = self.__getMnSet(img_src_1)
-        # mnSet2, img2 = self.__getMnSet(img_src_2)
+        img_src_1 = img_src_1.astype("float64")
+        img_src_2 = img_src_2.astype("float64")
 
         mnSet1 = self.__getMnSet(img_src_1)
         mnSet2 = self.__getMnSet(img_src_2)
@@ -45,10 +44,5 @@ class FpMatcher(object):
             return 0
 
         mnMatcher = MnMatcher()
-        mnMatcher.match(mnSet1, mnSet2)
-
-        cv2.waitKey()
-
-
-        print("done getting mnSet")
-
+        score = mnMatcher.match(mnSet1, mnSet2)
+        return score
