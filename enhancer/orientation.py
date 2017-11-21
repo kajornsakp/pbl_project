@@ -18,21 +18,6 @@ def sobelKernelY():
 def findOrientations(image, w=16, interpolate=True):
     """
     Estimate orientations of lines or ridges in an image.
-
-    This is more or less an implementation of of the algorithm in Chapter 2.4 in
-    the paper:
-
-        Fingerprint image enhancement: Algorithm and performance evaluation
-        Hong, L., Wan, Y. & Jain, A. (1998)
-
-    In addition to calculating the orientation in each cell, we create a
-    continuous orientation field, the same shape as the input image, by
-    interpolating the orientation values between the cell centers, as
-    suggested in this paper:
-
-        Novel approach to automated fingerprint recognition
-        Wahab, A., Chin, S. & Tan, E. (1998)
-
     :param image: The image to estimate orientations in.
     :param w: The block size.
     :returns: An ndarray the same shape as the image, filled with orientation
@@ -81,9 +66,6 @@ def findOrientations(image, w=16, interpolate=True):
 
     # Make an orientation field the same shape as the input image, and fill it
     # with values interpolated from the preliminary orientation field.
-    #
-    # BUG: This is currently quite slow. It should be possible to implement
-    #      this more efficiently.
     orientations = np.full(image.shape, -1.0)
     if interpolate:
         hw = w // 2
