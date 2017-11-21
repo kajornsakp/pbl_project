@@ -43,3 +43,8 @@ extractor/__pycache__/mn_extractor.cpython-36.pyc
 extractor/__pycache__/skeletonizer.cpython-36.pyc
 segmentator/__pycache__/__init__.cpython-36.pyc
 segmentator/__pycache__/segmentation.cpython-36.pyc
+matcher/__pycache__/fp_matcher.cpython-36.pyc
+utils/__pycache__/__init__.cpython-34.pyc
+utils/__pycache__/__init__.cpython-36.pyc
+utils/__pycache__/gabor.cpython-36.pyc
+utils/__pycache__/utils.cpython-36.pyc
