@@ -4,8 +4,6 @@ import utils
 def gaborKernel(size, angle, frequency):
     """
     Create a Gabor kernel given a size, angle and frequency.
-
-    Code is taken from https://github.com/rtshadow/biometrics.git
     """
 
     angle += np.pi * 0.5

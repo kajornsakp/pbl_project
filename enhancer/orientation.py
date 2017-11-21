@@ -1,19 +1,16 @@
 import numpy as np
 import utils
+import cv2
 import scipy.ndimage as ndimage
+from scipy import signal
+
 
 def sobelKernelX():
-    """
-    Creates a horizontal Sobel kernel.
-    """
     return np.array([[-1,  0,  1],
                      [-2,  0,  2],
                      [-1,  0,  1]])
 
 def sobelKernelY():
-    """
-    Creates a vertical Sobel kernel.
-    """
     return np.array([[-1, -2, -1],
                      [ 0,  0,  0],
                      [ 1,  2,  1]])
@@ -103,4 +100,3 @@ def findOrientations(image, w=16, interpolate=True):
                 orientations[y*w:(y+1)*w, x*w:(x+1)*w] = O[y, x]
 
     return orientations
-

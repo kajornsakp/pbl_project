@@ -47,8 +47,6 @@ def findFrequencies(image, orientations, w=32):
                 else:
                     F[y, x] = 1 / f
 
-    #showImage(rotations, "rotations")
-
     frequencies = np.full(image.shape, -1.0)
     F = np.pad(F, 1, mode="edge")
     for y in range(yblocks):
