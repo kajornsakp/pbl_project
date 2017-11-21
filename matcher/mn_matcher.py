@@ -1,4 +1,4 @@
-from cv2 import KeyPoint
+import cv2
 import numpy as np
 from minutiae.point2f import Point2f
 
@@ -113,92 +113,15 @@ class MnMatcher(object):
         #       matchedSet: [ tuple(distSet) ]
         matchedSet = self.__recordMatchPoints(distSet1, distSet2)
 
-        # 3.
-
-
         # 3. select a pair of matched points
         c = 0
-        '''
-        for m in matchedSet:
-            print("p: {}\nq: {}".format(m[0], m[1]))
-            print('Soln')
 
+        for m in matchedSet:
             # A ======
             a1 = Point2f(m[0].p.pos.x, m[0].p.pos.y)
             a2 = Point2f(m[1].p.pos.x, m[1].p.pos.y)
-            #
-            # print("\tA: ", end='')
-            # print(a1, a2)
-            #
-            # tx = a2.x - a1.x
-            # ty = a2.y - a1.y
-            # print("tx, ty = ({}, {})".format(tx, ty))
-            #
-            # theta = self.__calAngle(a1, a2)
-            # print("thetaX = {}".format(theta))
-            #
-            # # x_ = tx + (np.cos(theta) - np.sin(theta)) * a1.x
-            # # y_ = ty + (np.sin(theta) - np.cos(theta)) * a1.y
-            #
-            # x_ = tx + (a1.x * np.cos(theta)) + (-1 * a1.y * np.sin(theta))
-            # y_ = ty + (a1.x * np.sin(theta)) + (a1.y * np.cos(theta))
-            #
-            # print(x_, y_)
-
             aDist = a1.getDistance(a2)
             aAngle = self.__calAngle(a1, a2)
-            print("\tA: ", end='')
-            print(a1, a2, aDist, aAngle)
-
-            # B ======
-            b1 = Point2f(m[0].q.pos.x, m[0].q.pos.y)
-            b2 = Point2f(m[1].q.pos.x, m[1].q.pos.y)
-            bDist = b1.getDistance(b2)
-            bAngle = self.__calAngle(b1, b2)
-            #
-            print("\tB: ", end='')
-            print(b1, b2, bDist, bAngle)
-
-
-            dists = [aDist, bDist]
-            # angles = [aAngle, bAngle]
-            distRatio = min(dists) / max(dists)
-            # angleRatio = min(angles) / max(angles)
-            # if angleRatio < 0.8:
-            #     bAngle = self.__calAngle(b2, b1)
-            #     angles = [aAngle, bAngle]
-            #     angleRatio = min(angles) / max(angles)
-
-            # set = [distRatio, angleRatio]
-            # ratio = min(set) / max(set)
-            #
-            print("\tDistance Ratio: ", distRatio)
-            # print("\tAngle Ratio: ", angleRatio)
-            # print("\tRatio: ", ratio)
-            #
-            # if distRatio > 0.8:
-            #     c += 1
-
-            # if ratio > 0.9:
-            #     c += 1
-            c += 1
-            # if (c == 5):
-            #     break
-            print('-----------------------------------'*2)
-        '''
-
-        for m in matchedSet:
-            print("p: {}\nq: {}".format(m[0], m[1]))
-            print('Soln')
-
-            # A ======
-            a1 = Point2f(m[0].p.pos.x, m[0].p.pos.y)
-            a2 = Point2f(m[1].p.pos.x, m[1].p.pos.y)
-
-            aDist = a1.getDistance(a2)
-            aAngle = self.__calAngle(a1, a2)
-            print("\tA: ", end='')
-            print(a1, a2, aDist, aAngle)
 
             # B ======
             b1 = Point2f(m[0].q.pos.x, m[0].q.pos.y)
@@ -206,44 +129,77 @@ class MnMatcher(object):
             bDist = b1.getDistance(b2)
             bAngle = self.__calAngle(b1, b2)
 
-            print("\tB: ", end='')
-            print(b1, b2, bDist, bAngle)
 
-            dists = [aDist, bDist]
-            # angles = [aAngle, bAngle]
-            distRatio = min(dists) / max(dists)
 
-            # angleRatio = min(angles) / max(angles)
+            if aDist == 0 and bDist == 0:
+                distRatio = 1
+            else:
+                dists = [aDist, bDist]
+                distRatio = min(dists) / max(dists)
+            #
+            # if aAngle == 0 and bAngle == 0:
+            #     angleRatio = 1
+            # else:
+            #     angles = [aAngle, bAngle]
+            #     angleRatio = min(angles) / max(angles)
+
+
             # if angleRatio < 0.8:
             #     bAngle = self.__calAngle(b2, b1)
             #     angles = [aAngle, bAngle]
             #     angleRatio = min(angles) / max(angles)
 
-            # set = [distRatio, angleRatio]
-            # ratio = min(set) / max(set)
-            #
-            print("\tDistance Ratio: ", distRatio)
-            # print("\tAngle Ratio: ", angleRatio)
-            # print("\tRatio: ", ratio)
-            #
-            if distRatio > 0.7:
+            # if distRatio == 0 and angleRatio == 0:
+            #     ratio = 1
+            # else:
+            #     setRatio = [distRatio, angleRatio]
+            #     ratio = min(setRatio) / max(setRatio)
+
+            if distRatio > 0.6:
                 c += 1
 
-            # if ratio > 0.9:
-            #     c += 1
-            # c += 1
-            # if (c == 5):
-            #     break
-            print('-----------------------------------'*2)
-        print()
-        print("======"*10)
-        print("mnSet1={}, mnSet2={}, matchedSet={}".format(len(distSet1), len(distSet2), len(matchedSet)))
-        print("Total match: ", c)
+            if c < 0:
+                print("p: {}\nq: {}".format(m[0], m[1]))
+                print("\tA: ", end='')
+                print(a1, a2, aDist, aAngle)
+                print("\tB: ", end='')
+                print(b1, b2, bDist, bAngle)
+                print("\tDistance Ratio: ", distRatio)
+                # print("\tAngle Ratio: ", angleRatio)
+                # print("\tRatio: ", ratio)
+                print('-----------------------------------'*2)
 
+        # print()
+        # print("======"*10)
+
+        lenDists = [len(distSet1), len(distSet2)]
+        matches = [len(matchedSet), c]
+        matchRatio = min(matches) / max(matches)
+        sizeRatio = min(lenDists) / max(lenDists)
+        # print("mnSet1={}, mnSet2={}".format(len(distSet1), len(distSet2)))
+        # print("sizeRatio={}".format(sizeRatio))
+        # print("matchedSet={}, totalMatch={}".format(len(matchedSet), c))
+        # print("Match ratio=", matchRatio)
+        # print("finalRatio = {:.4f}".format(
+        #     (sizeRatio + (matchRatio * 5)) / 6
+        # ))
+
+        ans1 = sizeRatio * (len(distSet1) + len(distSet2))
+        ans2 = matchRatio * (len(matchedSet) + c)
+        res = (ans1 + ans2) / (len(distSet1) + len(distSet2) + len(matchedSet) + c)
+
+
+        if sizeRatio > 0.6:
+            multiplier = 1.0
+        else:
+            multiplier = 0.3
+
+        # multiplier = sizeRatio
+        # print("Res:", matchRatio * multiplier)
         # for i in range(len(d)):
         #     print("{} \t:\t {}".format(d[i], s[i]))
 
 
         # print(mnSet1[0].pos.getDistance(mnSet1[1].pos))
         # print(mnSet2[0].pos.getDistance(mnSet2[1].pos))
-
+        return matchRatio * multiplier

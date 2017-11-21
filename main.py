@@ -1,14 +1,24 @@
-from segmentator.segmentation import segment_image
-from enhancer import image_enhance
-from PIL import Image
-import numpy
+from datetime import datetime
+import matcher.fp_matcher as FpMatcher
+import scipy.ndimage as ndimage
 import cv2
 
-img = Image.open("asset/101_1.tif") #load image from file
-# segmentedImg = segment_image(img,25,85) #best threshold and size so far
-segmentedImg = segment_image(img,20,55) #threshold lv 1
-segmentedImg2 = segment_image(segmentedImg,15,60) #threshold lv 2
-# segmentedImg = segment_image(img,30,100) #for dataset with gray background
-segmentedImg.show()
-enhanced_image = Image.fromarray(image_enhance(numpy.asarray(segmentedImg)))
-enhanced_image.show()
+if __name__ == '__main__':
+    startTime = datetime.now()
+
+    fpMatcher = FpMatcher.FpMatcher()
+    mainImg = '7'
+    inputImg = '7'
+    for i in range(1, 5):
+        s = '' + str(i)
+        img1 = cv2.imread('./asset/' + mainImg + '_1.BMP', cv2.IMREAD_GRAYSCALE)
+        img2 = cv2.imread('./asset/' + inputImg + '_' + s +'.BMP', cv2.IMREAD_GRAYSCALE)
+
+        score = fpMatcher.match(img1, img2)
+        print(score)
+
+    # score = fpMatcher.match('./asset/6_1.BMP',
+    #                 './asset/6_2.BMP')
+    # print(score)
+
+    print(datetime.now() - startTime)

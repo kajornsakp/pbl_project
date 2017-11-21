@@ -9,7 +9,7 @@ import random as rand
 from datetime import datetime
 from extractor.binarizer import Binarizer
 from extractor.skeletonizer import Skeletonizer
-from enhancer.image_enhance import image_enhance
+from utils.image_enhance import image_enhance
 from segmentator.segmentation import segment_image
 from extractor.mn_extractor import MnExtractor
 
