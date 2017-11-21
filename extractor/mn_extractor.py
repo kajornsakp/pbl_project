@@ -30,7 +30,7 @@ class MnExtractor(object):
         # mnBifurc = []
         imgTemp = skeletonedImg.copy()
         rows, cols = imgTemp.shape
-        margin = 50
+        margin = 15
         for x in range(margin, rows - margin):  # for each pixels (except the borders)
             for y in range(margin, cols - margin):
                 if skeletonedImg[x, y] == 0:
