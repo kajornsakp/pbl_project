@@ -2,10 +2,6 @@ import numpy as np
 import utils
 
 def gaborKernel(size, angle, frequency):
-    """
-    Create a Gabor kernel given a size, angle and frequency.
-    """
-
     angle += np.pi * 0.5
     cos = np.cos(angle)
     sin = -np.sin(angle)

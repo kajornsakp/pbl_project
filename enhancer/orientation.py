@@ -1,8 +1,6 @@
 import numpy as np
 import utils
-import cv2
 import scipy.ndimage as ndimage
-from scipy import signal
 
 
 def sobelKernelX():

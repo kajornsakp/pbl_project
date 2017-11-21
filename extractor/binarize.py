@@ -2,10 +2,6 @@ import numpy as np
 
 def binarize(image, w=32):
     """
-    Perform a local binarization of an image. For each cell of the given size
-    w, the average value is calculated. Every pixel that is below this value,
-    is set to 0, every pixel above, is set to 1.
-
     :param image: The image to be binarized.
     :param w:     The size of the cell.
     :returns:     The binarized image.

@@ -5,13 +5,6 @@ import scipy.signal as signal
 def findFrequencies(image, orientations, w=32):
     """
     Estimate ridge or line frequencies in an image, given an orientation field.
-
-    This is more or less an implementation of of the algorithm in Chapter 2.5 in
-    the paper:
-
-        Fingerprint image enhancement: Algorithm and performance evaluation
-        Hong, L., Wan, Y. & Jain, A. (1998)
-
     :param image: The image to estimate orientations in.
     :param orientations: An orientation field such as one returned from the
                          estimateOrientations() function.
